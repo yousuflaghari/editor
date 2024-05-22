@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import FilterPage from "./pages/filterpage";
+import CropPage from "./pages/croppage";
 
-function App() {
+const App = () => {
+  const [image, setImage] = useState(null);
+  const [filteredImg, setFilteredImg] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <Link to="/">Filter</Link>
+          <Link to="/crop">Crop</Link>
+        </nav>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <FilterPage
+                image={image}
+                setImage={setImage}
+                setFilteredImg={setFilteredImg}
+              />
+            }
+          />
+          <Route
+            path="/crop"
+            element={<CropPage filteredImg={filteredImg} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
