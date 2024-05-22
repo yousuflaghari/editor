@@ -1,4 +1,3 @@
-// src/CropPage.js
 import React, { useState, useCallback } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./cropimage";
@@ -15,7 +14,6 @@ const CropPage = ({ filteredImg }) => {
 
   const handleCropSave = async () => {
     const croppedImage = await getCroppedImg(filteredImg, croppedArea);
-    console.log("Cropped Image:", croppedImage);
     setCroppedImageURL(croppedImage);
   };
 

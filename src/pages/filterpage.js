@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Button from "../component1/button";
-const FilterPage = ({ setImage, image }) => {
+
+const FilterPage = ({ setImage, image, setFilteredImg }) => {
   const [style, setStyle] = useState("");
   const canvasRef = useRef(null);
 
@@ -28,8 +29,11 @@ const FilterPage = ({ setImage, image }) => {
       ).filter;
       ctx.filter = filterStyle;
       ctx.drawImage(img, 0, 0);
+      const filteredImageDataURL = canvas.toDataURL();
+      setFilteredImg(filteredImageDataURL);
+
       const link = document.createElement("a");
-      link.href = canvas.toDataURL();
+      link.href = filteredImageDataURL;
       link.download = "filtered-image.png";
       link.click();
     };
