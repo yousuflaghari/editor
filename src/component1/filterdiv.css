@@ -1,0 +1,47 @@
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-div {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #ccc;
+}
+
+.vintage-filter {
+  filter: sepia(0.5) contrast(1.2) brightness(0.9);
+}
+
+.retro-filter {
+  filter: hue-rotate(30deg) saturate(1.5);
+}
+
+.soft-glow-filter {
+  filter: brightness(1.2) blur(2px);
+}
+
+.cool-tone-filter {
+  filter: hue-rotate(180deg) brightness(1.1);
+}
+
+.warm-tone-filter {
+  filter: sepia(0.2) saturate(1.8) brightness(1.1);
+}
+
+.high-contrast-bw-filter {
+  filter: contrast(2) grayscale(1);
+}
+
+.dreamy-filter {
+  filter: blur(3px) brightness(1.2) saturate(1.3);
+}

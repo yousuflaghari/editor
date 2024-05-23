@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import FilterPage from "./pages/filterpage";
-import CropPage from "./pages/croppage";
-
+import FilterImage from "./component1/filterimages";
 const App = () => {
   const [image, setImage] = useState(null);
   const [filteredImg, setFilteredImg] = useState(null);
@@ -10,24 +8,17 @@ const App = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <Link to="/">Filter</Link>
-          <Link to="/crop">Crop</Link>
-        </nav>
         <Routes>
           <Route
             path="/"
             element={
-              <FilterPage
+              <FilterImage
                 image={image}
                 setImage={setImage}
+                filteredImg={filteredImg}
                 setFilteredImg={setFilteredImg}
               />
             }
-          />
-          <Route
-            path="/crop"
-            element={<CropPage filteredImg={filteredImg} />}
           />
         </Routes>
       </div>

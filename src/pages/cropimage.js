@@ -1,13 +1,12 @@
-const createImage = (url) =>
+export const createImage = (url) =>
   new Promise((resolve, reject) => {
-    const image = new Image();
-    image.addEventListener("load", () => resolve(image));
-    image.addEventListener("error", (error) => reject(error));
-    image.setAttribute("crossOrigin", "anonymous"); // needed to avoid cross-origin issues
-    image.src = url;
+    const img = new Image();
+    img.addEventListener("load", () => resolve(img));
+    img.addEventListener("error", (err) => reject(err));
+    img.src = url;
   });
 
-export const getCroppedImg = async (imageSrc, pixelCrop) => {
+const getCroppedImg = async (imageSrc, pixelCrop) => {
   const image = await createImage(imageSrc);
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -27,10 +26,16 @@ export const getCroppedImg = async (imageSrc, pixelCrop) => {
     pixelCrop.height
   );
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     canvas.toBlob((blob) => {
-      resolve(URL.createObjectURL(blob));
-    }, "image/jpeg");
+      if (!blob) {
+        reject(new Error("Canvas is empty"));
+        return;
+      }
+      blob.name = "cropped-image.png";
+      const croppedImageUrl = window.URL.createObjectURL(blob);
+      resolve(croppedImageUrl);
+    }, "image/png");
   });
 };
 
